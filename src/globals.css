@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gap: 16px;
+  --card-bg: #fff;
+  --card-radius: 8px;
+}

@@ -1,0 +1,20 @@
+.header {
+  @apply bg-headerBg text-textPrimary p-4;
+  @apply flex justify-between items-center;
+}
+
+.header .left {
+  @apply flex items-center space-x-6;
+}
+
+.header .search-input {
+  @apply pl-3 pr-10 py-1 rounded-full text-black;
+}
+
+.header .search-icon {
+  @apply absolute right-3 top-1/2 -translate-y-1/2;
+}
+
+.header .actions {
+  @apply flex items-center space-x-4;
+}
