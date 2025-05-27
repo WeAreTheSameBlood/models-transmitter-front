@@ -1,0 +1,21 @@
+.search-input-wrapper {
+  position: relative;
+  width: 200px;
+}
+
+.search-input-field {
+  width: 100%;
+  padding: 0.25rem 2rem 0.25rem 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+}
+
+.search-icon {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 1rem;
+}

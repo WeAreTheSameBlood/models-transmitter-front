@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Images } from "@constants/images";
-import "@/styles/header/header.css";
+import "./header.css";
+import { SearchInput } from "@components/search-input/search-input"
 
 interface HeaderProps {
   isLoggedIn: boolean;
@@ -10,43 +11,42 @@ interface HeaderProps {
 export function Header({ isLoggedIn, username }: HeaderProps) {
   return (
     <header className="header">
-      <div className="left">
-        <Image src={Images.logo} alt="Logo" width={120} height={32} />
-        <div className="relative">
-          <input type="text" placeholder="Search" className="search-input" />
+      <div className="header-content">
+        <div className="left">
           <Image
-            src={Images.loupe}
-            alt=""
-            width={16}
-            height={16}
-            className="search-icon"
+            src={Images.logo}
+            alt="Logo"
+            width={120}
+            height={32}
+            style={{ width: 'auto', height: '32px' }}
           />
+          <SearchInput placeholder="Search" />
         </div>
-      </div>
 
-      <div className="actions">
-        {isLoggedIn ? (
-          <>
-            <Image
-              src={Images.emptyAvatar}
-              alt={username!}
-              width={32}
-              height={32}
-              className="rounded-full"
-            />
-            <button>
+        <div className="actions">
+          {isLoggedIn ? (
+            <>
               <Image
-                src={Images.bell}
-                alt="Notifications"
-                width={24}
-                height={24}
+                src={Images.emptyAvatar}
+                alt={username!}
+                width={32}
+                height={32}
+                className="rounded-full"
               />
-            </button>
-            <button className="font-medium">Logout</button>
-          </>
-        ) : (
-          <button className="font-medium">Log In</button>
-        )}
+              <button>
+                <Image
+                  src={Images.bell}
+                  alt="Notifications"
+                  width={24}
+                  height={24}
+                />
+              </button>
+              <button className="font-medium">Logout</button>
+            </>
+          ) : (
+            <button className="font-medium">Log In</button>
+          )}
+        </div>
       </div>
     </header>
   );
