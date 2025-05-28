@@ -5,17 +5,14 @@
   position: relative;
   display: flex;
   flex-direction: column;
-}
-
-.card-media {
-  flex: 0 0 80%;
-  position: relative;
+  height: 250px;
 }
 
 .card-image {
   display: block;
   width: 100%;
   object-fit: cover;
+  max-height: 80%;
 }
 
 .card-avatar {
@@ -35,7 +32,7 @@
 }
 
 .card-title {
-  padding: 10px;
+  margin: auto;
   text-align: center;
   font-size: 1rem;
   color: #000;

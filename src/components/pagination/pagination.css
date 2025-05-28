@@ -1,0 +1,27 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 24px 0;
+}
+
+.page-btn,
+.page-number {
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+.page-btn[disabled],
+.page-number[disabled] {
+  opacity: 0.75;
+  cursor: default;
+}
+
+.page-number.active {
+  text-decoration: underline;
+  font-weight: bold;
+}
