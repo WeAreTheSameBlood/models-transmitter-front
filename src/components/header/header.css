@@ -9,6 +9,7 @@
   max-width: var(--content-width);
   margin: 0 auto;
   display: flex;
+  align-items: center;
 }
 
 .header-content > * {
@@ -17,7 +18,7 @@
 
 .header-content .left {
   justify-content: flex-start;
-  margin-left: 20px;
+  margin-left: 20px;;
   display: flex;
   align-items: center;
 }
@@ -25,6 +26,7 @@
 .header-content .center {
   justify-content: center;
   display: flex;
+  align-items: center;
 }
 
 .header-content .actions {

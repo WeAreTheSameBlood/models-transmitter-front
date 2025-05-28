@@ -11,5 +11,6 @@ export const Images = {
 
   modelCardPlaceholder1: modelCard + "placeholder1.png",
   modelCardPlaceholder2: modelCard + "placeholder2.png",
+  modelCardPlaceholder3: modelCard + "placeholder3.png",
   heart: modelCard + "heart.png",
 };

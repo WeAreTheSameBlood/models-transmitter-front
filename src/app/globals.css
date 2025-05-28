@@ -1,10 +1,13 @@
 :root {
+  --light-blue:     #5796f4;
   --main-blue:      #196EF0;
   --dark-blue:      #0C2354;
   --main-background:#D7DEE7;
   --white:          #FFFFFF;
+  --clear:          #ffffff00;
   --foreground:     #1f1f1f;
   --text:           #000E1A;
+  --text-light:     var(--white);
 
   --content-width: 1100px;
 }

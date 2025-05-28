@@ -8,10 +8,11 @@ export default function GalleryPage() {
   const t = useTranslations("GalleryPage");
 
   const cards: ModelCardProps[] = Array.from({ length: 11 }).map((_, i) => ({
-    imageSrc:
-      Math.random() < 0.5
-        ? Images.modelCardPlaceholder1
-        : Images.modelCardPlaceholder2,
+    imageSrc: [
+      Images.modelCardPlaceholder1,
+      Images.modelCardPlaceholder2,
+      Images.modelCardPlaceholder3
+    ][Math.floor(Math.random() * 3)],
     avatarSrc: Images.emptyAvatar,
     title: t("modelName") + (i + 1),
     likes: Math.floor(Math.random() * 1000),
