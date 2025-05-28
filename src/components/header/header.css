@@ -3,30 +3,32 @@
   background-color: var(--main-blue);
   color: var(--white);
   padding: 1rem 0;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .header-content {
-  max-width: 1200px;
+  max-width: var(--content-width);
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
-.header .left {
+.header-content > * {
+  flex: 1;
+}
+
+.header-content .left {
+  justify-content: flex-start;
+  margin-left: 20px;
   display: flex;
   align-items: center;
-  gap: 1.5rem;
 }
 
-.header .left img {
-  height: 32px;
-  width: auto;
+.header-content .center {
+  justify-content: center;
+  display: flex;
 }
 
-.header .actions {
+.header-content .actions {
+  justify-content: flex-end;
   display: flex;
   align-items: center;
-  gap: 1rem;
 }

@@ -1,0 +1,42 @@
+.model-card {
+  background: #fff;
+  border-radius: 40px 0 40px 0;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-media {
+  flex: 0 0 80%;
+  position: relative;
+}
+
+.card-image {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-avatar {
+  position: absolute;
+  top: 6%;
+  left: 6%;
+  border-radius: 50%;
+  border: 3px solid #fff;
+}
+
+.card-like {
+  position: absolute;
+  top: 6%;
+  right: 6%;
+  border-radius: 50%;
+  border: 3px solid #fff;
+}
+
+.card-title {
+  padding: 10px;
+  text-align: center;
+  font-size: 1rem;
+  color: #000;
+}

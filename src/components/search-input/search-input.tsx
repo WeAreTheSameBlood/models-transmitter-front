@@ -14,6 +14,5 @@ export const SearchInput: React.FC<SearchInputProps> = ({
       className="search-input-field"
       placeholder={placeholder}
     />
-    <span className="search-icon">🔍</span>
   </div>
 );

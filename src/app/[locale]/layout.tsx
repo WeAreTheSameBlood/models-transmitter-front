@@ -17,10 +17,9 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body>
+        <Header isLoggedIn={false} />
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Header isLoggedIn={false} />
           {children}
-          {/* <LocalSwitcher /> */}
         </NextIntlClientProvider>
       </body>
     </html>

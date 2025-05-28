@@ -16,5 +16,8 @@
     },
     "Footer": {
       "copyright": "© 2025 Models Transnitter. All rights reserved."
+    },
+    "GalleryPage": {
+      "modelName": "Model "
     }
   }
