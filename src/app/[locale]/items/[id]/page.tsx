@@ -5,6 +5,7 @@ import { ItemMediaPanel } from "@/components/item/item-media-panel-props/item-me
 import { ItemDescriptionBlock } from "@/components/item/item-description-block/item-description-block";
 import { Images } from "@/constants/images";
 import { DownloadButton } from "@/components/buttons/download-button/download-button";
+import { BackButton } from "@/components/buttons/back-button/back-button";
 
 interface ItemPageProps {
   params: { locale: string; id: string };
@@ -21,7 +22,7 @@ export default async function ItemPage({ params }: ItemPageProps) {
       Images.modelCardPlaceholder2,
       Images.modelCardPlaceholder3,
     ],
-    title: "Bobardillo Crocodillo 3d Modelillo",
+    title: "Bombardillo Crocodillo 3d Modelillo",
     owner: "andrii666",
     date: new Date().toISOString(),
     summary: "This is a mock summary of the model for development purposes",
@@ -35,10 +36,14 @@ export default async function ItemPage({ params }: ItemPageProps) {
 
   return (
     <div className="item-page">
-      <div className="title-block">
-        <div>
-          <h1> {title} </h1>
+
+      <div className="top-block">
+
+        <div className="title-block">
+          <BackButton />
+          <h2> {title} </h2>
         </div>
+        
         <DownloadButton onClick={() => handleDownload()} />
       </div>
 

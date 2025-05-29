@@ -8,6 +8,7 @@ export const Images = {
   bell: header + "bell.png",
 
   emptyAvatar: shared + "empty-avatar.jpg",
+  arrow_left: shared + "arrow_left.png",
 
   modelCardPlaceholder1: modelCard + "placeholder1.png",
   modelCardPlaceholder2: modelCard + "placeholder2.png",

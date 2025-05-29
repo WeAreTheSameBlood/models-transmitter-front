@@ -1,0 +1,11 @@
+.back-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.back-icon {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}

@@ -9,11 +9,19 @@
   gap: 20px;
 }
 
-.title-block {
+.top-block {
   position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 98%;
+}
+
+.title-block {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
 }
