@@ -9,5 +9,5 @@
 }
 
 .download-button:hover {
-  background-color: var(--dark-blue);
+  background: var(--light-blue);
 }
