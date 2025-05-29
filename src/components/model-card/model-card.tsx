@@ -1,9 +1,11 @@
 import React from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import "./model-card.css";
 import { Images } from "@/constants/images";
 
 export interface ModelCardProps {
+  id: string;
   imageSrc: string;
   avatarSrc: string;
   title: string;
@@ -11,14 +13,20 @@ export interface ModelCardProps {
 }
 
 export default function ModelCard({
+  id,
   imageSrc,
   avatarSrc,
   title,
   likes,
 }: ModelCardProps) {
+  const router = useRouter();
   const indicateImgSize = 50;
   return (
-    <div className="model-card">
+    <div
+      className="model-card"
+      onClick={() => router.push(`items/${id}`)}
+      style={{ cursor: 'pointer' }}
+    >
         
       {/* // MARK: - Image */}
       <Image

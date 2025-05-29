@@ -12,7 +12,7 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   const { default: messages } = await import(`../../../messages/${locale}.json`);
-  if (!hasLocale(routing.locales, locale))  notFound();
+  if (!hasLocale(routing.locales, locale)) notFound();
   
   return (
     <html lang={locale}>

@@ -3,6 +3,7 @@ import { Images } from "@constants/images";
 import "./header.css";
 import { SearchInput } from "@components/search-input/search-input"
 import { UserBlock } from "@components/user_block/user_block";
+import Link from 'next/link';
 
 interface HeaderProps {
   isLoggedIn: boolean;
@@ -17,13 +18,15 @@ export function Header({ isLoggedIn, username }: HeaderProps) {
         
         {/* // MARK: - Logo */}
         <div className="left">
-          <Image
-            src={Images.logo}
-            alt="Logo"
-            width={100}
-            height={30}
-            style={{ width: 'auto', height: '30px' }}
-          />
+          <Link href="/">
+            <Image
+              src={Images.logo}
+              alt="logo"
+              width={100}
+              height={30}
+              style={{ width: 'auto', height: '30px' }}
+            />
+          </Link>
         </div>
 
         {/* // MARK: - Search */}

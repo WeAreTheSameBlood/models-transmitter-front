@@ -1,0 +1,32 @@
+.item-description {
+  max-width: var(--content-width);
+  padding: 0 20px;
+}
+
+.item-title {
+  margin: 0 0 8px;
+  font-size: 1.5rem;
+}
+
+.item-meta {
+  color: #666;
+  margin-bottom: 16px;
+  font-size: 0.875rem;
+}
+
+.item-owner {
+  margin-right: 1rem;
+}
+
+.item-date {
+  opacity: 0.8;
+}
+
+.item-summary h2 {
+  margin: 16px 0 8px;
+  font-size: 1.25rem;
+}
+
+.item-summary p {
+  line-height: 1.5;
+}
