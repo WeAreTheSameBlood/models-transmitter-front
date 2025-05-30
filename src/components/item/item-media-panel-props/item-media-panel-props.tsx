@@ -24,17 +24,22 @@ export const ItemMediaPanel: React.FC<ItemMediaPanelProps> = ({ mediaUrls }) =>
       if (selected !== 0 || !previewCanvasRef.current) return;
       const width = previewCanvasRef.current.clientWidth;
       const height = previewCanvasRef.current.clientHeight;
+
       const scene = new THREE.Scene();
-      
+
       const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-      camera.position.set(3, 3, 3);
+      camera.position.set(2, 2, 3);
       camera.lookAt(0, 0, 0);
-      
-      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+      });
       renderer.setSize(width, height);
       renderer.setClearColor(0x000000, 0);
-      
-      previewCanvasRef.current.innerHTML = '';
+      renderer.autoClear = false;
+
+      previewCanvasRef.current.innerHTML = "";
       previewCanvasRef.current.appendChild(renderer.domElement);
 
       const controls = new OrbitControls(camera, renderer.domElement);
@@ -43,11 +48,21 @@ export const ItemMediaPanel: React.FC<ItemMediaPanelProps> = ({ mediaUrls }) =>
       controls.target.set(0, 0, 0);
 
       const light = new THREE.DirectionalLight(0xffffff, 1);
-      light.position.set(0, 1, 1).normalize();
-      scene.add(light);
-
       const hemi = new HemisphereLight(0xffffff, 0x444444, 0.6);
+      light.position.set(0, 1, 1).normalize();
+
+      scene.add(light);
       scene.add(hemi);
+      scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+
+      const axesScene = new THREE.Scene();
+      const axesCamera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 10);
+
+      axesCamera.position.set(2, 2, 3);
+      axesCamera.lookAt(0, 0, 0);
+      const axesHelper = new THREE.AxesHelper(1);
+      const axesHelperRef = { current: axesHelper };
+      axesScene.add(axesHelper);
 
       const loader = new OBJLoader();
       loader.load(
@@ -72,15 +87,16 @@ export const ItemMediaPanel: React.FC<ItemMediaPanelProps> = ({ mediaUrls }) =>
               });
 
               const edges = new EdgesGeometry(mesh.geometry);
-              const line = new LineSegments(edges, new LineBasicMaterial({ color: 0x333333 }));
+              const line = new LineSegments(
+                edges,
+                new LineBasicMaterial({ color: 0x333333 })
+              );
               mesh.add(line);
             }
           });
 
-          scene.add(new THREE.AmbientLight(0xffffff, 0.5));
           scene.add(obj);
           modelRef.current = obj;
-
           controls.update();
         },
         undefined,
@@ -89,15 +105,33 @@ export const ItemMediaPanel: React.FC<ItemMediaPanelProps> = ({ mediaUrls }) =>
         }
       );
 
+      const widgetSize = 100;
+      const margin = 10;
       const animate = () => {
         requestAnimationFrame(animate);
+
+        renderer.clear();
         controls.update();
         renderer.render(scene, camera);
+
+        renderer.clearDepth();
+
+        axesHelperRef.current.quaternion.copy(camera.quaternion);
+        renderer.setViewport(
+          width - widgetSize - margin,
+          margin,
+          widgetSize,
+          widgetSize
+        );
+        renderer.render(axesScene, axesCamera);
+
+        renderer.setViewport(0, 0, width, height);
       };
       animate();
+
       return () => {
         renderer.dispose();
-        previewCanvasRef.current && (previewCanvasRef.current.innerHTML = '');
+        previewCanvasRef.current && (previewCanvasRef.current.innerHTML = "");
       };
     }, [selected]);
 

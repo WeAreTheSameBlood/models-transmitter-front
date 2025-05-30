@@ -44,9 +44,12 @@ export default function GalleryPage() {
       Array.from({ length: pageSize }).map((_, i) => ({
         id: (i + 1 + (currentPage - 1) * pageSize).toString(),
         imageSrc: [
-          Images.modelCardPlaceholder1,
-          Images.modelCardPlaceholder2,
           Images.modelCardPlaceholder3,
+          Images.modelCardPlaceholder2,
+          Images.modelCardPlaceholder1,
+          Images.modelCardPlaceholder3,
+          Images.modelCardPlaceholder2,
+          Images.modelCardPlaceholder1,
         ][Math.floor(Math.random() * 3)],
         avatarSrc: Images.emptyAvatar,
         title: t("modelName") + (i + 1 + (currentPage - 1) * pageSize),
