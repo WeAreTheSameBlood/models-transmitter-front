@@ -1,0 +1,35 @@
+.likes-counter {
+  width: 50px;
+  height: 52px;
+}
+
+.likes-icon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  transform: translateX(-50%);
+  background-color: var(--white);
+  border-radius: 50%;
+  border: 3px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.likes-badge {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  background-color: var(--main-blue);
+  color: #fff;
+  padding: 3px 6px 1px;
+  min-width: 30px;
+  height: 20px;
+  border-radius: 12.5px;
+  font-size: 0.8rem;
+  text-align: center;
+  font-weight:bolder;
+}

@@ -1,10 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import "./model-card.css";
+import "./item-card.css";
 import { Images } from "@/constants/images";
+import { ItemCardLikesCounter } from "../item-card-likes-counter/item-card-likes-counter";
 
-export interface ModelCardProps {
+export interface ItemCardProps {
   id: string;
   imageSrc: string;
   avatarSrc: string;
@@ -12,22 +13,21 @@ export interface ModelCardProps {
   likes: number;
 }
 
-export default function ModelCard({
+export default function ItemCard({
   id,
   imageSrc,
   avatarSrc,
   title,
   likes,
-}: ModelCardProps) {
+}: ItemCardProps) {
   const router = useRouter();
   const indicateImgSize = 50;
   return (
     <div
       className="model-card"
       onClick={() => router.push(`items/${id}`)}
-      style={{ cursor: 'pointer' }}
+      style={{ cursor: "pointer" }}
     >
-        
       {/* // MARK: - Image */}
       <Image
         src={imageSrc}
@@ -47,12 +47,9 @@ export default function ModelCard({
       />
 
       {/* // MARK: - Likes */}
-      <Image
-        src={Images.heart}
-        alt="likes"
-        width={indicateImgSize}
-        height={indicateImgSize}
+      <ItemCardLikesCounter
         className="card-like"
+        count={likes}
       />
 
       {/* // MARK: - Title */}

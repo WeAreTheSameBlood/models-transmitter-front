@@ -15,14 +15,14 @@ export default async function ItemPage({ params }: ItemPageProps) {
   const { locale, id } = await params;
   const data = {
     mediaUrls: [
-      Images.modelCardPlaceholder1,
-      Images.modelCardPlaceholder2,
       Images.modelCardPlaceholder3,
       Images.modelCardPlaceholder1,
       Images.modelCardPlaceholder2,
       Images.modelCardPlaceholder3,
+      Images.modelCardPlaceholder1,
+      Images.modelCardPlaceholder2,
     ],
-    title: "Bombardillo Crocodillo 3d Modelillo",
+    title: "Bombardillo Crocodillo 3d Modelillo " + id,
     owner: "andrii666",
     date: new Date().toISOString(),
     summary: "This is a mock summary of the model for development purposes",

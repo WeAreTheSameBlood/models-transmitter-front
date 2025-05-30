@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import ModelCard, { ModelCardProps } from "@/components/model-card/model-card";
+import ItemCard, { ItemCardProps } from "@/components/item/item-card/item-card";
 import "./page.css";
 import { Images } from "@/constants/images";
 import { Pagination } from "@/components/pagination/pagination";
@@ -12,7 +12,7 @@ export default function GalleryPage() {
   const pageSize = 12;
   const [currentPage, setCurrentPage] = useState(1);
   const [totalItems, setTotalItems] = useState(0);
-  const [cards, setCards] = useState<ModelCardProps[]>([]);
+  const [cards, setCards] = useState<ItemCardProps[]>([]);
 
   const sortOptions: DropdownOption[] = [
     { label: 'Newest', value: 'newest' },
@@ -76,7 +76,7 @@ export default function GalleryPage() {
 
       <div className="main-grid">
         {cards.map((card, idx) => (
-          <ModelCard key={idx} {...card} />
+          <ItemCard key={idx} {...card} />
         ))}
       </div>
 
