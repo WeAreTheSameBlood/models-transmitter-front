@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import "./user_block.css";
-import { login, logout } from "@/services/auth/auth";
 
 interface UserBlockProps {
   isLoggedIn: boolean;
@@ -14,7 +13,7 @@ export const UserBlock: React.FC<UserBlockProps> = ({
 }) => {
   if (!isLoggedIn) {
     return (
-      <button className="userblock-button" onClick={login}>
+      <button className="userblock-button">
         Log In
       </button>
     );
@@ -22,7 +21,7 @@ export const UserBlock: React.FC<UserBlockProps> = ({
   return (
     <div className="userblock-logged">
       <span className="userblock-name">{username}</span>
-      <button className="userblock-button" onClick={logout}>
+      <button className="userblock-button">
         Logout
       </button>
     </div>

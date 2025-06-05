@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Images } from "@constants/images";
 import "./header.css";
 import { SearchInput } from "@components/search-input/search-input"
-import { UserBlock } from "@components/user_block/user_block";
 import Link from 'next/link';
 
 interface HeaderProps {
@@ -35,12 +34,7 @@ export function Header({ isLoggedIn, username }: HeaderProps) {
         </div>
 
         {/* // MARK: - User Block */}
-        <div className="actions">
-          <UserBlock
-            isLoggedIn={isLoggedIn}
-            username={username}
-          />
-        </div>
+        <div className="right"></div>
         
       </div>
 

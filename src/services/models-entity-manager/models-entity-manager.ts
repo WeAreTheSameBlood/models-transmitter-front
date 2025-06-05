@@ -1,10 +1,13 @@
 export const ModelsEntityManager = {
-  async downloadModelAsUrl(url: string): Promise<string> {
+  // MARK - Process as URL
+  async processModelAsUrl(url: string): Promise<string> {
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Помилка завантаження моделі: ${response.statusText}`);
     }
+
     const blob = await response.blob();
+    
     if (
       !blob.type ||
       !/^(model\/gltf-binary|model\/obj|model\/usdz)/.test(blob.type)

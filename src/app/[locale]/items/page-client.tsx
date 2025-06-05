@@ -15,7 +15,6 @@ interface GalleryPageClientProps {
   totalItems: number;
   pageSize: number;
   currentPage: number;
-  locale: string;
 }
 
 export default function GalleryPageClient({
@@ -23,7 +22,6 @@ export default function GalleryPageClient({
   totalItems,
   pageSize,
   currentPage,
-  locale,
 }: GalleryPageClientProps) {
   const t = useTranslations("GalleryPage");
 
@@ -32,6 +30,7 @@ export default function GalleryPageClient({
     { label: t("sort.popular"), value: "popular" },
     { label: t("sort.oldest"), value: "oldest" },
   ];
+
   const categoryOptions: DropdownOption[] = [
     { label: t("category.all"), value: "all" },
     { label: t("category.art"), value: "art" },
@@ -39,6 +38,7 @@ export default function GalleryPageClient({
     { label: t("category.tools"), value: "tools" },
     { label: t("category.other"), value: "other" },
   ];
+  
   const authorOptions: DropdownOption[] = [
     { label: t("author.all"), value: "all" },
     { label: t("author.withOwner"), value: "owner" },

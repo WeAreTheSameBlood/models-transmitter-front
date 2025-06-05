@@ -1,17 +1,16 @@
 import * as THREE from "three";
-import { GLTFLoader, OBJLoader, USDZLoader } from "three/examples/jsm/Addons.js";
+import { GLTFLoader, OBJLoader } from "three/examples/jsm/Addons.js";
 
 export type FileFormat = "obj" | "glb";
 
 export default class ThreeJSSceneManager {
-  static async render(
-    fileUrl: string
-  ): Promise<THREE.Scene> {
+  // MARK: - Render Scene
+  static async render(fileUrl: string): Promise<THREE.Scene> {
     const extMatch = fileUrl.match(/\.([a-z0-9]+)(?:\?.*)?$/i);
-    const ext = extMatch ? extMatch[1].toLowerCase() : '';
-    
+    const ext = extMatch ? extMatch[1].toLowerCase() : "";
+
     switch (ext) {
-      case 'obj':
+      case "obj":
         return this.processObjFile(fileUrl);
 
       case "glb":
@@ -22,13 +21,41 @@ export default class ThreeJSSceneManager {
     }
   }
 
+  // MARK: - Private
+  private static async processObjFile(url: string): Promise<THREE.Scene> {
+    const scene = this.createBaseScene();
+    const loader = new OBJLoader();
+
+    const object = await new Promise<THREE.Object3D>((resolve, reject) => {
+      loader.load(url, resolve, undefined, reject);
+    });
+
+    this.prepareObject(object, true);
+    scene.add(object);
+    (scene.userData as any).model = object;
+    return scene;
+  }
+
+  private static async processGlbFile(url: string): Promise<THREE.Scene> {
+    const scene = this.createBaseScene(3);
+    const loader = new GLTFLoader();
+    const gltf = await new Promise<any>((resolve, reject) => {
+      loader.load(url, resolve, undefined, reject);
+    });
+    const object = gltf.scene;
+    this.prepareObject(object);
+    scene.add(object);
+    (scene.userData as any).model = object;
+    return scene;
+  }
+  
   private static createBaseScene(ambientIntense: number = 1): THREE.Scene {
     const scene = new THREE.Scene();
     scene.add(new THREE.AmbientLight(0xffffff, ambientIntense));
-    
+
     const dir = new THREE.DirectionalLight(0xffffff, 1);
     dir.position.set(0, 1, 1).normalize();
-    
+
     scene.add(dir);
     return scene;
   }
@@ -36,7 +63,7 @@ export default class ThreeJSSceneManager {
   private static prepareObject(
     object: THREE.Object3D,
     needLines: boolean = false,
-    baseScale: number = 4,
+    baseScale: number = 4
   ) {
     const bbox = new THREE.Box3().setFromObject(object);
     const size = bbox.getSize(new THREE.Vector3());
@@ -60,32 +87,5 @@ export default class ThreeJSSceneManager {
         mesh.add(line);
       }
     });
-  }
-
-  private static async processObjFile(url: string): Promise<THREE.Scene> {
-    const scene = this.createBaseScene();
-    const loader = new OBJLoader();
-    
-    const object = await new Promise<THREE.Object3D>((resolve, reject) => {
-      loader.load(url, resolve, undefined, reject);
-    });
-
-    this.prepareObject(object, true);
-    scene.add(object);
-    (scene.userData as any).model = object;
-    return scene;
-  }
-
-  private static async processGlbFile(url: string): Promise<THREE.Scene> {
-    const scene = this.createBaseScene(3);
-    const loader = new GLTFLoader();
-    const gltf = await new Promise<any>((resolve, reject) => {
-      loader.load(url, resolve, undefined, reject);
-    });
-    const object = gltf.scene;
-    this.prepareObject(object);
-    scene.add(object);
-    (scene.userData as any).model = object;
-    return scene;
   }
 }

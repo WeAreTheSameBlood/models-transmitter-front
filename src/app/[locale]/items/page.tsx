@@ -1,29 +1,24 @@
-"use client";
 import React from "react";
-import { useSearchParams } from "next/navigation";
-import { useTranslations } from "next-intl";
 import GalleryPageData from "./page-data";
 
-export default function GalleryPage({
-  params,
-}: {
+interface GalleryPageProps {
   params: { locale: string };
-}) {
-  const t = useTranslations("GalleryPage");
+  searchParams: { page?: string };
+}
 
-  const searchParams = useSearchParams();
-  const pageParam = searchParams.get("page");
+export default async function GalleryPage({
+  params,
+  searchParams,
+}: GalleryPageProps) {
+  const pageSize = 12;
+  const sp = await searchParams;
+  const pageParam = sp.page;
   const currentPage = pageParam ? parseInt(pageParam, 10) : 1;
 
-  const pageSize = 12;
-
   return (
-    <>
-      <GalleryPageData
-        pageSize={pageSize}
-        currentPage={currentPage}
-        locale={params.locale}
-      />
-    </>
+    <GalleryPageData
+      currentPage={currentPage}
+      pageSize={pageSize}
+    />
   );
 }
