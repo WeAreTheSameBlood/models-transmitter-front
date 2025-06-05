@@ -1,23 +1,24 @@
 import * as THREE from "three";
 import { GLTFLoader, OBJLoader } from "three/examples/jsm/Addons.js";
 
-export type FileFormat = "obj" | "glb";
+export type FileFormat = "model/obj" | "model/gltf-binary";
 
 export default class ThreeJSSceneManager {
   // MARK: - Render Scene
   static async render(fileUrl: string): Promise<THREE.Scene> {
-    const extMatch = fileUrl.match(/\.([a-z0-9]+)(?:\?.*)?$/i);
-    const ext = extMatch ? extMatch[1].toLowerCase() : "";
+    const headResponse = await fetch(fileUrl, { method: "HEAD" });
+    const contentType = headResponse.headers.get("Content-Type") || "";
+    const mime = contentType.toLowerCase();
 
-    switch (ext) {
-      case "obj":
+    switch (mime) {
+      case "model/obj":
         return this.processObjFile(fileUrl);
 
-      case "glb":
+      case "model/gltf-binary":
         return this.processGlbFile(fileUrl);
 
       default:
-        throw new Error(`Unsupported format: ${ext}`);
+        throw new Error(`Unsupported format: ${mime}`);
     }
   }
 
@@ -53,17 +54,26 @@ export default class ThreeJSSceneManager {
     const scene = new THREE.Scene();
     scene.add(new THREE.AmbientLight(0xffffff, ambientIntense));
 
-    const dir = new THREE.DirectionalLight(0xffffff, 1);
-    dir.position.set(0, 1, 1).normalize();
+    const directoryLights = [
+      {  int: 5,   x: 2,   y: 1,   z: 3  },
+      {  int: 5,   x: -2,  y: 1,   z: -3 },
+      {  int: 10,  x: 0,   y: 3,   z: 0  },
+      {  int: 10,  x: 0,   y: 3,   z: 0  },
+    ];
 
-    scene.add(dir);
+    directoryLights.forEach(light => {
+      const dir = new THREE.DirectionalLight(0xffffff, light.int);
+      dir.position.set(light.x, light.y, light.z).normalize();
+      scene.add(dir);
+    });
+
     return scene;
   }
 
   private static prepareObject(
     object: THREE.Object3D,
     needLines: boolean = false,
-    baseScale: number = 4
+    baseScale: number = 2
   ) {
     const bbox = new THREE.Box3().setFromObject(object);
     const size = bbox.getSize(new THREE.Vector3());

@@ -1,10 +1,11 @@
 import { BACKEND_URLs } from "@/constants";
-import { StoreItem } from "../entities/store-item";
+import { StoreItemDetailedInfo } from "../entities/store-item-detailed-info";
 import { checkResponse } from "../util/helpers";
+import { StoreItemGeneralInfo } from "../entities/store-item-general-info";
 
 export const ItemsNetworkingService = {
   // MARK: - GET ALL
-  async getAllItems(): Promise<StoreItem[]> {
+  async getAllItems(): Promise<StoreItemGeneralInfo[]> {
     try {
       const res = await fetch(BACKEND_URLs.GET_ALL_ITEMS, {
         method: "GET",
@@ -12,7 +13,7 @@ export const ItemsNetworkingService = {
           "Content-Type": "application/json",
         },
       });
-      return await checkResponse<StoreItem[]>(res);
+      return await checkResponse<StoreItemGeneralInfo[]>(res);
     } catch (error) {
       throw new Error(
         "Failed to fetch items. Please check your network or try again later"
@@ -21,14 +22,14 @@ export const ItemsNetworkingService = {
   },
 
   // MARK: - GET One By ID
-  async getItemById(id: string): Promise<StoreItem> {
+  async getItemById(id: string): Promise<StoreItemDetailedInfo> {
     const res = await fetch(BACKEND_URLs.GET_ITEM_BY_ID(id), {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     });
-    return checkResponse<StoreItem>(res);
+    return checkResponse<StoreItemDetailedInfo>(res);
   },
 
   // MARK: - DELETE One By ID

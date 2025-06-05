@@ -8,10 +8,11 @@ import ThreeJSSceneManager, { FileFormat } from '@/services/three-js-scene-manag
 import { OBJLoader, OrbitControls } from "three/examples/jsm/Addons.js";
 
 export interface ItemMediaPanelProps {
+  modelUrl: string,
   mediaUrls: string[];
 }
 
-export const ItemMediaPanel: React.FC<ItemMediaPanelProps> = ({ mediaUrls }) => {
+export const ItemMediaPanel: React.FC<ItemMediaPanelProps> = ({ modelUrl, mediaUrls }) => {
   const [selected, setSelected] = useState(0);
   const [wireframe, setWireframe] = useState(false);
   const modelRef = useRef<THREE.Group>();
@@ -25,10 +26,8 @@ export const ItemMediaPanel: React.FC<ItemMediaPanelProps> = ({ mediaUrls }) => 
     const cleanupContainer = container;
     const width = container.clientWidth;
     const height = container.clientHeight;
-    const obj = "obj";
-    const glb = "glb";
 
-    const scenePromise = ThreeJSSceneManager.render("/mock/crocodillo." + obj);
+    const scenePromise = ThreeJSSceneManager.render(modelUrl);
 
     let renderer: THREE.WebGLRenderer;
     let controls: any;
@@ -93,47 +92,50 @@ export const ItemMediaPanel: React.FC<ItemMediaPanelProps> = ({ mediaUrls }) => 
 
   useEffect(() => {
     if (!thumbCanvasRef.current) return;
-    const width = thumbCanvasRef.current.clientWidth;
-    const height = thumbCanvasRef.current.clientHeight;
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-    camera.position.set(7, 7, 7);
-    camera.lookAt(0, 0, 0);
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(width, height);
-    renderer.setClearColor(0x000000, 0);
-    thumbCanvasRef.current.innerHTML = '';
-    thumbCanvasRef.current.appendChild(renderer.domElement);
-    const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(0, 1, 1).normalize();
-    scene.add(light);
+    const container = thumbCanvasRef.current;
+    const width = container.clientWidth;
+    const height = container.clientHeight;
 
-    const hemi = new THREE.HemisphereLight(0xffffff, 0x444444, 0.6);
-    scene.add(hemi);
+    let renderer: THREE.WebGLRenderer;
+    let animationId: number;
 
-    const loader = new OBJLoader();
-    loader.load("/mock/crocodillo.obj", (obj) => {
-      const box = new THREE.Box3().setFromObject(obj);
+    ThreeJSSceneManager.render(modelUrl).then((scene) => {
+      const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+      camera.position.set(7, 7, 7);
+      camera.lookAt(0, 0, 0);
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(width, height);
+      renderer.setClearColor(0x000000, 0);
+
+      container.innerHTML = "";
+      container.appendChild(renderer.domElement);
+
+      const box = new THREE.Box3().setFromObject(scene);
       const size = box.getSize(new THREE.Vector3());
       const maxDim = Math.max(size.x, size.y, size.z);
-      const scale = 10 / maxDim;
-      obj.scale.set(scale, scale, scale);
-      const center = box.getCenter(new THREE.Vector3());
-      obj.position.set(0, 0, 0);
+      const scale = 6 / maxDim;
+      scene.scale.set(scale, scale, scale);
 
-      scene.add(new THREE.AmbientLight(0xffffff, 0.5));
-      scene.add(obj);
+      const animateThumb = () => {
+        animationId = requestAnimationFrame(animateThumb);
+        renderer.render(scene, camera);
+      };
+      animateThumb();
+    }).catch((err) => {
+      console.error("Failed to load thumbnail model:", err);
     });
-    const animate = () => {
-      requestAnimationFrame(animate);
-      renderer.render(scene, camera);
-    };
-    animate();
+
     return () => {
-      renderer.dispose();
-      thumbCanvasRef.current && (thumbCanvasRef.current.innerHTML = "");
+      if (animationId) cancelAnimationFrame(animationId);
+      if (renderer) {
+        renderer.dispose();
+      }
+      if (container) {
+        container.innerHTML = "";
+      }
     };
-  }, []);
+  }, [modelUrl]);
 
   useEffect(() => {
     if (!modelRef.current) return;

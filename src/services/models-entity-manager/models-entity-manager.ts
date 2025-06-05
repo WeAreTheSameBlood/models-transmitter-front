@@ -20,6 +20,7 @@ export const ModelsEntityManager = {
     return objectUrl;
   },
 
+  // MARK - Revoke
   revokeObjectUrl(objectUrl: string) {
     URL.revokeObjectURL(objectUrl);
   },

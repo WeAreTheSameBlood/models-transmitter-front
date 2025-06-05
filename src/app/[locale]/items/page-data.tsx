@@ -1,5 +1,5 @@
 import React from "react";
-import { ItemsNetworkingService, StoreItem } from "@services";
+import { ItemsNetworkingService, StoreItemGeneralInfo } from "@services";
 import GalleryPageClient from "./page-client";
 
 interface GalleryPageDataProps {
@@ -8,7 +8,7 @@ interface GalleryPageDataProps {
 }
 
 export default async function GalleryPageData(propeties: GalleryPageDataProps) {
-  const allItems: StoreItem[] = await ItemsNetworkingService.getAllItems();
+  const allItems: StoreItemGeneralInfo[] = await ItemsNetworkingService.getAllItems();
 
   const totalItems =  allItems.length;
   const startIndex =  (propeties.currentPage - 1) * propeties.pageSize;
