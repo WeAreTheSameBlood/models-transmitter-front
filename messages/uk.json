@@ -1,23 +1,37 @@
 {
-    "HomePage": {
-      "title": "Привіт світе!",
-      "about": "На сторіку 'Про нас'"
+  "NotFoundPage": {
+    "title": "Сторінка не знайдена",
+    "description": "Упс! Здається, ви натрапили на сторінку, якої не існує. Не хвилюйтеся, наша магія інтернаціоналізації продовжує працювати в інших частинах додатку. Поверніться назад, щоб продовжити дослідження!"
+  },
+  "Navigation": {
+    "home": "Головна"
+  },
+  "GalleryPage": {
+    "modelName": "Модель ",
+    "loading": "Завантаження моделей...",
+    "errorLoadingItems": "Помилка завантаження товарів. Спробуйте пізніше.",
+    "sort": {
+      "newest": "Новіші",
+      "popular": "Популярні",
+      "oldest": "Старіші"
     },
-    "IndexPage": {
-      "title": "next-intl приклад",
-      "description": "Welcome to the Next.js Internationalization (i18n) example! This demo showcases the power of the App Router and how to manage multilingual content seamlessly using next-intl."
+    "category": {
+      "all": "Всі категорії",
+      "art": "Мистецтво",
+      "household": "Побут",
+      "tools": "Інструменти",
+      "other": "Інше"
     },
-    "NotFoundPage": {
-      "title": "Сторінка не знайдена",
-      "description": "Oops! It seems like you've stumbled upon a page that doesn't exist. Don't worry, our internationalization magic is still hard at work on other parts of the app. Feel free to navigate back to explore more!"
-    },
-    "Navigation": {
-      "home": "Home"
-    },
-    "Footer": {
-      "copyright": "© 2025 Models Transnitter. Всі права збережені."
-    },
-    "GalleryPage": {
-      "modelName": "Модель "
+    "author": {
+      "all": "Всі автори",
+      "withOwner": "З власником",
+      "draws": "Загальні"
     }
+  },
+  "ItemPage": {
+    "detailsLabel": "Деталі",
+    "downloadButton": "Завантажити всі файли",
+    "errorLoadingModel": "Не вдалося завантажити 3D-модель.",
+    "errorLoadingItem": "Не вдалося завантажити дані товару."
   }
+}

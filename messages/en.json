@@ -1,23 +1,37 @@
 {
-    "HomePage": {
-      "title": "Hello world!",
-      "about": "Go to the about page"
+  "NotFoundPage": {
+    "title": "Page Not Found",
+    "description": "Oops! It seems like you've stumbled upon a page that doesn't exist. Don't worry, our internationalization magic is still hard at work on other parts of the app. Feel free to navigate back to explore more!"
+  },
+  "Navigation": {
+    "home": "Home"
+  },
+  "GalleryPage": {
+    "modelName": "Model ",
+    "loading": "Loading models...",
+    "errorLoadingItems": "Failed to load items. Please try again later.",
+    "sort": {
+      "newest": "Newest",
+      "popular": "Popular",
+      "oldest": "Oldest"
     },
-    "IndexPage": {
-      "title": "next-intl example",
-      "description": "Welcome to the Next.js Internationalization (i18n) example! This demo showcases the power of the App Router and how to manage multilingual content seamlessly using next-intl."
+    "category": {
+      "all": "All Categories",
+      "art": "Art",
+      "household": "Household",
+      "tools": "Tools",
+      "other": "Other"
     },
-    "NotFoundPage": {
-      "title": "Page Not Found",
-      "description": "Oops! It seems like you've stumbled upon a page that doesn't exist. Don't worry, our internationalization magic is still hard at work on other parts of the app. Feel free to navigate back to explore more!"
-    },
-    "Navigation": {
-      "home": "Home"
-    },
-    "Footer": {
-      "copyright": "© 2025 Models Transnitter. All rights reserved."
-    },
-    "GalleryPage": {
-      "modelName": "Model "
+    "author": {
+      "all": "All Authors",
+      "withOwner": "With owner",
+      "draws": "Draws"
     }
+  },
+  "ItemPage": {
+    "detailsLabel": "Details",
+    "downloadButton": "Download all files",
+    "errorLoadingModel": "Failed to load 3D model.",
+    "errorLoadingItem": "Failed to load item details."
   }
+}

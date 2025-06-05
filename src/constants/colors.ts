@@ -5,22 +5,6 @@ const COLORS = {
   white:            "#FFFFFF",
   foreground:       "#1f1f1f",
   text:             "#000E1A",
-  // backgroundLight:    "#eef3ee",
-  // background:         "#97b897",
-  // backgroundAccents:  "#11721a",
-  // foreground:         "#1f1f1f",
-  // headerText:         "#ffffff",
-  // headerBackground:   "#005FFF",
-  // pageBackground:     "#E4E8EF",
-  // cardContainerBg:    "#D4DAE0",
-  // cardBg:             "#ffffff",
-  // textPrimary:        "#1f1f1f",
-  // textMuted:          "#4b4b4b",
-  // accentPrimary:      "#005FFF",
-  // accentSecondary:    "#F48024",
-  // heartBg:            "#ffffff",
-  // heartIcon:          "#005FFF",
-  // avatarBorder:       "#ffffff",
 };
 
 export default COLORS;
