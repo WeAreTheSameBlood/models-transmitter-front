@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import Image from "next/image";
 import "./item-media-panel-props.css";
 import * as THREE from "three";
-import ThreeJSSceneManager, { FileFormat } from '@/services/three-js-scene-manager/three-js-scene-manager';
+import ThreeJSSceneManager from '@/services/three-js-scene-manager/three-js-scene-manager';
 import { OBJLoader, OrbitControls } from "three/examples/jsm/Addons.js";
 
 export interface ItemMediaPanelProps {

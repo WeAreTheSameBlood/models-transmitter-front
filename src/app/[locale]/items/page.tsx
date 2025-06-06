@@ -6,19 +6,28 @@ interface GalleryPageProps {
   searchParams: Promise<{ page?: string }>;
 }
 
-export default async function GalleryPage({
-  params,
-  searchParams,
-}: GalleryPageProps) {
+export default async function GalleryPage({ params, searchParams }: GalleryPageProps) {
+  const { page } = await searchParams;
+  const currentPage = page ? parseInt(page, 10) : 1;
   const pageSize = 12;
-  const sp = await searchParams;
-  const pageParam = sp.page;
-  const currentPage = pageParam ? parseInt(pageParam, 10) : 1;
 
-  return (
-    <GalleryPageData
-      currentPage={currentPage}
-      pageSize={pageSize}
-    />
-  );
+  return <GalleryPageData currentPage={currentPage} pageSize={pageSize} />;
 }
+
+// interface LocalePageProps {
+//   params: { locale: string };
+//   searchParams?: { page?: string };
+// }
+
+// export default function LocalePage({ params, searchParams }: LocalePageProps) {
+//   const { locale } = params;
+
+//   const pageParam = searchParams?.page;
+//   const currentPage = pageParam ? parseInt(pageParam, 10) : 1;
+//   const pageSize = 12;
+
+//   console.log("locale --> " + locale);
+//   console.log("page   --> " + currentPage);
+
+//   return <GalleryPageData currentPage={currentPage} pageSize={pageSize} />;
+// }
