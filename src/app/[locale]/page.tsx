@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 interface LocalePageProps {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
 export default async function LocaleIndexPage({ params }: LocalePageProps) {
