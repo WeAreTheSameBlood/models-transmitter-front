@@ -2,8 +2,8 @@ import React from "react";
 import GalleryPageData from "./page-data";
 
 interface GalleryPageProps {
-  params: { locale: string };
-  searchParams: { page?: string };
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ page?: string }>;
 }
 
 export default async function GalleryPage({

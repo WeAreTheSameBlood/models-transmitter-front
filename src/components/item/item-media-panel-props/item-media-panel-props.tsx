@@ -12,11 +12,21 @@ export interface ItemMediaPanelProps {
   mediaUrls: string[];
 }
 
+type MediaItem = { type: "3d" } | { type: "img"; url: string };
+
+export interface ItemMediaPanelProps {
+  modelUrl: string;
+  mediaUrls: string[];
+}
+
 export const ItemMediaPanel: React.FC<ItemMediaPanelProps> = ({ modelUrl, mediaUrls }) => {
   const [selected, setSelected] = useState(0);
   const [wireframe, setWireframe] = useState(false);
-  const modelRef = useRef<THREE.Group>();
-  const items = [{ type: '3d' }, ...mediaUrls.map((url) => ({ type: 'img', url }))];
+  const modelRef = useRef<THREE.Group | null>(null);
+  const items: MediaItem[] = [
+    { type: "3d" },
+    ...mediaUrls.map((url) => ({ type: "img" as const, url })),
+  ];
   const previewRef = useRef<HTMLDivElement>(null);
   const thumbCanvasRef = useRef<HTMLDivElement>(null);
 
@@ -183,7 +193,7 @@ export const ItemMediaPanel: React.FC<ItemMediaPanelProps> = ({ modelUrl, mediaU
 
             {item.type === 'img' ? (
               <Image
-                src={item.url!}
+                src={item.url}
                 alt={`thumb ${idx}`}
                 fill
                 // style={{ objectFit: "cover"}}

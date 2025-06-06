@@ -1,18 +1,14 @@
 import React from "react";
-import { ItemsNetworkingService, ModelsEntityManager, StoreItemDetailedInfo } from "@/services";
+import { ItemsNetworkingService, StoreItemDetailedInfo } from "@/services";
 import SingleStoreItemPageClient from "./page-client";
 
-interface ItemPageProps {
-  params: { locale: string; id: string };
-}
-
-export default async function SingleStoreItemPage({ params }: ItemPageProps) {
+export default async function SingleStoreItemPage({
+  params,
+}: {
+  params: Promise<{ locale: string; id: string }>;
+}) {
   const { locale, id } = await params;
   const item: StoreItemDetailedInfo = await ItemsNetworkingService.getItemById(id);
 
-  return (
-    <SingleStoreItemPageClient
-      item= {item}
-    />
-  )
+  return <SingleStoreItemPageClient item={item}/>;
 }
