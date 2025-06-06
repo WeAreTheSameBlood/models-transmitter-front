@@ -186,7 +186,8 @@ export const ItemMediaPanel: React.FC<ItemMediaPanelProps> = ({ modelUrl, mediaU
                 src={item.url!}
                 alt={`thumb ${idx}`}
                 fill
-                style={{ objectFit: "cover" }}
+                // style={{ objectFit: "cover"}}
+                style={{ objectFit: "contain"}}
               />
             ) : (
               <div ref={thumbCanvasRef} className="thumb-canvas" />

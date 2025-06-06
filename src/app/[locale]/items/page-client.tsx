@@ -4,14 +4,11 @@ import { useTranslations } from "next-intl";
 import ItemCard, { ItemCardProps } from "@/components/item/item-card/item-card";
 import { Dropdown, DropdownOption } from "@/components/dropdown/dropdown";
 import { Pagination } from "@/components/pagination/pagination";
-import { Images } from "@/constants/images";
 import "./page.css"
+import { StoreItemGeneralInfo } from "@/services";
 
 interface GalleryPageClientProps {
-  items: {
-    id: string;
-    title: string;
-  }[];
+  items: StoreItemGeneralInfo[];
   totalItems: number;
   pageSize: number;
   currentPage: number;
@@ -56,9 +53,9 @@ export default function GalleryPageClient({
   };
 
   const cards: ItemCardProps[] = items.map((item) => ({
-    id: item.id,
-    imageSrc: Images.modelCardPlaceholder3,
-    title: item.title,
+    id:       item.id,
+    imageSrc: item.title_image_download_url,
+    title:    item.title,
   }));
 
   return (

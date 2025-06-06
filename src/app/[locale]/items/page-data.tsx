@@ -8,7 +8,7 @@ interface GalleryPageDataProps {
 }
 
 export default async function GalleryPageData(propeties: GalleryPageDataProps) {
-  const allItems: StoreItemGeneralInfo[] = await ItemsNetworkingService.getAllItems();
+  const allItems: StoreItemGeneralInfo[] = (await ItemsNetworkingService.getAllItems()).reverse();
 
   const totalItems =  allItems.length;
   const startIndex =  (propeties.currentPage - 1) * propeties.pageSize;

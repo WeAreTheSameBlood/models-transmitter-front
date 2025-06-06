@@ -55,10 +55,10 @@ export default class ThreeJSSceneManager {
     scene.add(new THREE.AmbientLight(0xffffff, ambientIntense));
 
     const directoryLights = [
-      {  int: 5,   x: 2,   y: 1,   z: 3  },
-      {  int: 5,   x: -2,  y: 1,   z: -3 },
-      {  int: 10,  x: 0,   y: 3,   z: 0  },
-      {  int: 10,  x: 0,   y: 3,   z: 0  },
+      {  int: 1,   x: 2,   y: 1,   z: 3  },
+      {  int: 1,   x: -2,  y: 1,   z: -3 },
+      {  int: 3,  x: 0,   y: 3,   z: 0  },
+      {  int: 3,  x: 0,   y: 3,   z: 0  },
     ];
 
     directoryLights.forEach(light => {

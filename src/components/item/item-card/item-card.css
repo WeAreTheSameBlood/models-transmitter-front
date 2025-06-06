@@ -5,14 +5,17 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 250px;
+  height: 350px;
+  /* padding: 25px; */
 }
 
 .card-image {
   display: block;
   width: 100%;
-  object-fit: cover;
-  max-height: 80%;
+  /* object-fit: cover; */
+  object-fit: contain;
+  max-height: 85%;
+  padding-top: 5%;
 }
 
 .card-avatar {

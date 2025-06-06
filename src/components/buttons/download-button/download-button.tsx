@@ -8,7 +8,7 @@ export interface DownloadButtonProps {
 export const DownloadButton: React.FC<DownloadButtonProps> = ({ onClick }) => (
   <button
     className="download-button"
-    // onClick={onClick}
+    onClick={onClick}
   >
     Download model
   </button>

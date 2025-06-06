@@ -4,8 +4,7 @@ import { DownloadButton } from "@/components/buttons/download-button/download-bu
 import { ItemDescriptionBlock } from "@/components/item/item-description-block/item-description-block";
 import { ItemMediaPanel } from "@/components/item/item-media-panel-props/item-media-panel-props";
 import "./page.css";
-import { ModelsEntityManager, StoreItemDetailedInfo } from "@/services";
-import { Images } from "@/constants";
+import { StoreItemDetailedInfo } from "@/services";
 import { notFound } from "next/navigation";
 
 interface SingleStoreItemPageClientProps {
@@ -17,8 +16,8 @@ export default function SingleStoreItemPageClient(
 ) {
   if (!item) notFound();
 
-  const mediaUrls: string[] = [Images.modelCardPlaceholder1];
-  const modelUrl = item.model_file_download_url;
+  const mediaUrls: string[] = [item.title_image_download_url];
+  const modelUrl : string =    item.model_file_download_url;
 
   const handleDownload = () => {
     window.location.href = item.model_file_download_url;
@@ -26,7 +25,6 @@ export default function SingleStoreItemPageClient(
 
   return (
     <div className="item-page">
-
       <div className="top-block">
         <div className="title-block">
           <BackButton />
@@ -36,12 +34,17 @@ export default function SingleStoreItemPageClient(
         <DownloadButton onClick={handleDownload} />
       </div>
 
-      <ItemMediaPanel
-        modelUrl={modelUrl}
-        mediaUrls={mediaUrls}
-      />
+      <ItemMediaPanel modelUrl={modelUrl} mediaUrls={mediaUrls} />
 
-      <ItemDescriptionBlock />
+      <ItemDescriptionBlock
+        amount={item.amount}
+        addedDate={item.date_created}
+        brand={item.brand}
+        brandCountry="Norway"
+        manufacturerCountry="Ukraine"
+        category="Food & Drinks"
+        barcodeValue={item.barcode_value}
+      />
     </div>
   );
 }
